@@ -1,0 +1,26 @@
+<div class="setting-container-back" dir="rtl">
+  <div [formGroup]="searchForm" class="setting-panel">
+    <mat-table style="overflow-x: scroll" [dataSource]="dataSource">
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-form-field style="width: 80%;">
+            <mat-label>
+              نام
+            </mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <p class="email text-truncate">
+            {{element?.name}}
+          </p>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple>
+      </mat-row>
+    </mat-table>
+    <app-custom-paginator [data]="customerService.pageEvent" (page)="pageHandler($event)"
+                          [pageSizeOptions]="[5, 10, 13]"></app-custom-paginator>
+  </div>
+</div>
