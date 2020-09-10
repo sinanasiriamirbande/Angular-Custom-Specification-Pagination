@@ -35,8 +35,9 @@ export class CustomerComponent implements OnInit {
   }
 
   getCustomers() {
-    this.customerService.getAll().subscribe(res => {
-      console.log(res);
+    this.customerService.getAll().subscribe((res: any) => {
+      this.dataSource = new MatTableDataSource<any>(res);
+      this.customerService.setPageDetailData(res);
     });
   }
 
